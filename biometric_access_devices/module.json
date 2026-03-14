@@ -1,0 +1,8 @@
+{
+  "id": "biometric_access_devices",
+  "title": "Biometric Access Devices",
+  "app_id": "physical_devices_office_equipment",
+  "type": "module",
+  "status": "draft",
+  "supports_submodules": true
+}

@@ -1,0 +1,8 @@
+{
+  "docs": [
+    "device_sync_event",
+    "scan_event_log",
+    "device_assignment",
+    "scanner_device"
+  ]
+}

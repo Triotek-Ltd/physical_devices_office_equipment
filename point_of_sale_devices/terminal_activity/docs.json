@@ -1,0 +1,7 @@
+{
+  "docs": [
+    "device_payment_event",
+    "receipt_print_event",
+    "terminal_session"
+  ]
+}

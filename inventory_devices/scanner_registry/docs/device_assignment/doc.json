@@ -1,0 +1,27 @@
+{
+  "doc_key": "device_assignment",
+  "doc_title": "Device Assignment",
+  "doc_kind": "transaction",
+  "status": "draft",
+  "module_id": "inventory_devices",
+  "submodule_id": "scanner_registry",
+  "app_id": "physical_devices_office_equipment",
+  "base_action_profile": "base_record_actions",
+  "doc_archetype": "transaction",
+  "classification": {
+    "archetype": "transaction",
+    "bundle": "integration"
+  },
+  "planning_source": {
+    "type": "reference_doc_generation_manifest",
+    "bundle": "integration",
+    "app": "physical_devices_office_equipment",
+    "module": "inventory_devices",
+    "submodule": "scanner_registry",
+    "reference_doc_id": "device_assignment",
+    "evidence_gaps": [
+      "assignee model",
+      "lost-device handling"
+    ]
+  }
+}

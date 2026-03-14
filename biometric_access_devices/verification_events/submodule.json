@@ -1,0 +1,8 @@
+{
+  "id": "verification_events",
+  "title": "Verification Events",
+  "app_id": "physical_devices_office_equipment",
+  "module_id": "biometric_access_devices",
+  "type": "submodule",
+  "status": "draft"
+}

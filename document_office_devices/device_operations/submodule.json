@@ -1,0 +1,8 @@
+{
+  "id": "device_operations",
+  "title": "Device Operations",
+  "app_id": "physical_devices_office_equipment",
+  "module_id": "document_office_devices",
+  "type": "submodule",
+  "status": "draft"
+}

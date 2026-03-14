@@ -1,0 +1,6 @@
+{
+  "submodules": [
+    "terminal_activity",
+    "terminal_registry"
+  ]
+}

@@ -1,0 +1,8 @@
+{
+  "id": "point_of_sale_devices",
+  "title": "Point Of Sale Devices",
+  "app_id": "physical_devices_office_equipment",
+  "type": "module",
+  "status": "draft",
+  "supports_submodules": true
+}

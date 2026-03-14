@@ -1,0 +1,27 @@
+{
+  "doc_key": "access_exception_case",
+  "doc_title": "Access Exception Case",
+  "doc_kind": "workflow_case",
+  "status": "draft",
+  "module_id": "biometric_access_devices",
+  "submodule_id": "verification_events",
+  "app_id": "physical_devices_office_equipment",
+  "base_action_profile": "base_record_actions",
+  "doc_archetype": "workflow_case",
+  "classification": {
+    "archetype": "workflow_case",
+    "bundle": "integration"
+  },
+  "planning_source": {
+    "type": "reference_doc_generation_manifest",
+    "bundle": "integration",
+    "app": "physical_devices_office_equipment",
+    "module": "biometric_access_devices",
+    "submodule": "verification_events",
+    "reference_doc_id": "access_exception_case",
+    "evidence_gaps": [
+      "escalation routing",
+      "evidence-retention rules"
+    ]
+  }
+}

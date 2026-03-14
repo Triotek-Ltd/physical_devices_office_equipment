@@ -1,0 +1,8 @@
+{
+  "id": "inventory_devices",
+  "title": "Inventory Devices",
+  "app_id": "physical_devices_office_equipment",
+  "type": "module",
+  "status": "draft",
+  "supports_submodules": true
+}

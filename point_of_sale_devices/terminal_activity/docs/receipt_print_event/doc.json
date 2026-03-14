@@ -1,0 +1,27 @@
+{
+  "doc_key": "receipt_print_event",
+  "doc_title": "Receipt Print Event",
+  "doc_kind": "ledger",
+  "status": "draft",
+  "module_id": "point_of_sale_devices",
+  "submodule_id": "terminal_activity",
+  "app_id": "physical_devices_office_equipment",
+  "base_action_profile": "base_record_actions",
+  "doc_archetype": "ledger",
+  "classification": {
+    "archetype": "ledger",
+    "bundle": "integration"
+  },
+  "planning_source": {
+    "type": "reference_doc_generation_manifest",
+    "bundle": "integration",
+    "app": "physical_devices_office_equipment",
+    "module": "point_of_sale_devices",
+    "submodule": "terminal_activity",
+    "reference_doc_id": "receipt_print_event",
+    "evidence_gaps": [
+      "duplicate print handling",
+      "paper-out/error taxonomy"
+    ]
+  }
+}

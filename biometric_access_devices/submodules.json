@@ -1,0 +1,6 @@
+{
+  "submodules": [
+    "access_devices",
+    "verification_events"
+  ]
+}

@@ -1,0 +1,6 @@
+{
+  "submodules": [
+    "device_operations",
+    "device_registry"
+  ]
+}

@@ -1,0 +1,8 @@
+{
+  "id": "terminal_activity",
+  "title": "Terminal Activity",
+  "app_id": "physical_devices_office_equipment",
+  "module_id": "point_of_sale_devices",
+  "type": "submodule",
+  "status": "draft"
+}

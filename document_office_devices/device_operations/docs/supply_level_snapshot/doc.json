@@ -1,0 +1,27 @@
+{
+  "doc_key": "supply_level_snapshot",
+  "doc_title": "Supply Level Snapshot",
+  "doc_kind": "ledger",
+  "status": "draft",
+  "module_id": "document_office_devices",
+  "submodule_id": "device_operations",
+  "app_id": "physical_devices_office_equipment",
+  "base_action_profile": "base_record_actions",
+  "doc_archetype": "ledger",
+  "classification": {
+    "archetype": "ledger",
+    "bundle": "integration"
+  },
+  "planning_source": {
+    "type": "reference_doc_generation_manifest",
+    "bundle": "integration",
+    "app": "physical_devices_office_equipment",
+    "module": "document_office_devices",
+    "submodule": "device_operations",
+    "reference_doc_id": "supply_level_snapshot",
+    "evidence_gaps": [
+      "measurement frequency",
+      "alert-trigger rules"
+    ]
+  }
+}

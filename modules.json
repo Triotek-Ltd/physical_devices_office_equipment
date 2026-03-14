@@ -1,0 +1,8 @@
+{
+  "modules": [
+    "biometric_access_devices",
+    "document_office_devices",
+    "inventory_devices",
+    "point_of_sale_devices"
+  ]
+}

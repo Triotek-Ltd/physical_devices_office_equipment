@@ -1,0 +1,27 @@
+{
+  "doc_key": "device_sync_event",
+  "doc_title": "Device Sync Event",
+  "doc_kind": "ledger",
+  "status": "draft",
+  "module_id": "inventory_devices",
+  "submodule_id": "scan_operations",
+  "app_id": "physical_devices_office_equipment",
+  "base_action_profile": "base_record_actions",
+  "doc_archetype": "ledger",
+  "classification": {
+    "archetype": "ledger",
+    "bundle": "integration"
+  },
+  "planning_source": {
+    "type": "reference_doc_generation_manifest",
+    "bundle": "integration",
+    "app": "physical_devices_office_equipment",
+    "module": "inventory_devices",
+    "submodule": "scan_operations",
+    "reference_doc_id": "device_sync_event",
+    "evidence_gaps": [
+      "conflict-resolution",
+      "offline-sync recovery rules"
+    ]
+  }
+}

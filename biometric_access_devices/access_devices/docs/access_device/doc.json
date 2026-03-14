@@ -1,0 +1,27 @@
+{
+  "doc_key": "access_device",
+  "doc_title": "Access Device",
+  "doc_kind": "master",
+  "status": "draft",
+  "module_id": "biometric_access_devices",
+  "submodule_id": "access_devices",
+  "app_id": "physical_devices_office_equipment",
+  "base_action_profile": "base_record_actions",
+  "doc_archetype": "master",
+  "classification": {
+    "archetype": "master",
+    "bundle": "integration"
+  },
+  "planning_source": {
+    "type": "reference_doc_generation_manifest",
+    "bundle": "integration",
+    "app": "physical_devices_office_equipment",
+    "module": "biometric_access_devices",
+    "submodule": "access_devices",
+    "reference_doc_id": "access_device",
+    "evidence_gaps": [
+      "door/zone hierarchy",
+      "fallback mode rules"
+    ]
+  }
+}
