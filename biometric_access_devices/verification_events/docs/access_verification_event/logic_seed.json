@@ -60,7 +60,10 @@
       "party": "primary_party",
       "currency": "currency_code",
       "total_amount": "total_amount",
-      "event_time": "schedule_marker"
+      "event_time": "schedule_marker",
+      "related_access_device": "relation_collection",
+      "related_access_exception_case": "relation_collection",
+      "related_biometric_check_case": "relation_collection"
     },
     "search_fields": [
       "title",
@@ -95,7 +98,34 @@
       "archive": "archived"
     }
   },
-  "workflow_hints": {},
+  "workflow_hints": {
+    "relation_context": {
+      "related_docs": [
+        "access_device",
+        "access_exception_case",
+        "biometric_check_case"
+      ],
+      "borrowed_fields": [
+        "device/site context from access_device"
+      ],
+      "inferred_roles": [
+        "case owner"
+      ]
+    },
+    "actors": [
+      "case owner"
+    ],
+    "action_actors": {
+      "record": [
+        "case owner"
+      ],
+      "archive": [
+        "case owner"
+      ]
+    }
+  },
+  "downstream_effects": [],
+  "action_side_effects_file": "side_effects.json",
   "related_docs": [
     "access_device",
     "access_exception_case",

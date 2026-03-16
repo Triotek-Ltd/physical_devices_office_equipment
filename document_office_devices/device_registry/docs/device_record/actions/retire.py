@@ -8,7 +8,7 @@ ACTION_ID = "retire"
 ACTION_RULE = {'allowed_in_states': ['draft', 'provisioned', 'active', 'retired'], 'transitions_to': None}
 
 STATE_FIELD = 'workflow_state'
-WORKFLOW_HINTS = {}
+WORKFLOW_HINTS = {'relation_context': {'related_docs': ['device_job_log', 'maintenance_case', 'supply_level_snapshot'], 'borrowed_fields': ['site/location metadata from facilities or org docs where linked'], 'inferred_roles': ['case owner']}, 'actors': ['case owner'], 'action_actors': {'create': ['case owner'], 'activate': ['case owner'], 'retire': ['case owner'], 'archive': ['case owner']}}
 
 def handle_retire(payload: dict, context: dict | None = None) -> dict:
     context = context or {}

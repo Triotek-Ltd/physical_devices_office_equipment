@@ -8,7 +8,7 @@ ACTION_ID = "activate"
 ACTION_RULE = {'allowed_in_states': ['draft'], 'transitions_to': 'active'}
 
 STATE_FIELD = 'workflow_state'
-WORKFLOW_HINTS = {}
+WORKFLOW_HINTS = {'relation_context': {'related_docs': ['terminal_session', 'receipt_print_event', 'device_payment_event'], 'borrowed_fields': ['merchant/site context from payment or operations setup'], 'inferred_roles': ['finance officer']}, 'actors': ['finance officer'], 'action_actors': {'create': ['finance officer'], 'activate': ['finance officer'], 'retire': ['finance officer'], 'archive': ['finance officer']}}
 
 def handle_activate(payload: dict, context: dict | None = None) -> dict:
     context = context or {}

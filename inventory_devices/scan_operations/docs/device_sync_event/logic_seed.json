@@ -56,7 +56,10 @@
     ],
     "field_purposes": {
       "workflow_state": "lifecycle_state",
-      "posting_date": "posting_date"
+      "posting_date": "posting_date",
+      "related_scanner_device": "relation_collection",
+      "related_device_assignment": "relation_collection",
+      "related_scan_event_log": "relation_collection"
     },
     "search_fields": [
       "title",
@@ -89,7 +92,34 @@
       "archive": "archived"
     }
   },
-  "workflow_hints": {},
+  "workflow_hints": {
+    "relation_context": {
+      "related_docs": [
+        "scanner_device",
+        "device_assignment",
+        "scan_event_log"
+      ],
+      "borrowed_fields": [
+        "device identity from scanner_device"
+      ],
+      "inferred_roles": [
+        "operations coordinator"
+      ]
+    },
+    "actors": [
+      "operations coordinator"
+    ],
+    "action_actors": {
+      "record": [
+        "operations coordinator"
+      ],
+      "archive": [
+        "operations coordinator"
+      ]
+    }
+  },
+  "downstream_effects": [],
+  "action_side_effects_file": "side_effects.json",
   "related_docs": [
     "scanner_device",
     "device_assignment",

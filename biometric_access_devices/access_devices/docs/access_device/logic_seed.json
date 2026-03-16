@@ -57,7 +57,9 @@
     ],
     "field_purposes": {
       "workflow_state": "lifecycle_state",
-      "active_status": "status_flag"
+      "active_status": "status_flag",
+      "related_access_verification_event": "relation_collection",
+      "related_access_exception_case": "relation_collection"
     },
     "search_fields": [
       "title",
@@ -92,7 +94,39 @@
       "archive": "archived"
     }
   },
-  "workflow_hints": {},
+  "workflow_hints": {
+    "relation_context": {
+      "related_docs": [
+        "access_verification_event",
+        "access_exception_case"
+      ],
+      "borrowed_fields": [
+        "site/access-point context from facilities/security setup"
+      ],
+      "inferred_roles": [
+        "case owner"
+      ]
+    },
+    "actors": [
+      "case owner"
+    ],
+    "action_actors": {
+      "create": [
+        "case owner"
+      ],
+      "activate": [
+        "case owner"
+      ],
+      "retire": [
+        "case owner"
+      ],
+      "archive": [
+        "case owner"
+      ]
+    }
+  },
+  "downstream_effects": [],
+  "action_side_effects_file": "side_effects.json",
   "related_docs": [
     "access_verification_event",
     "access_exception_case"

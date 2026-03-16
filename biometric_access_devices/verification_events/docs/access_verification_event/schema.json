@@ -381,6 +381,78 @@
         "filterable": true,
         "sortable": true
       }
+    },
+    {
+      "field_id": "related_access_device",
+      "label": "Related Access Device",
+      "type": "Table MultiSelect",
+      "required": false,
+      "read_only": false,
+      "default": null,
+      "unique": false,
+      "options": null,
+      "purpose": "relation_collection",
+      "linked_doc": "access_device",
+      "depends_on": null,
+      "mandatory_depends_on": null,
+      "read_only_depends_on": null,
+      "fetch_from": null,
+      "allow_on_submit": false,
+      "indexed": false,
+      "ui": {
+        "visible": false,
+        "list_visible": false,
+        "filterable": false,
+        "sortable": false
+      }
+    },
+    {
+      "field_id": "related_access_exception_case",
+      "label": "Related Access Exception Case",
+      "type": "Table MultiSelect",
+      "required": false,
+      "read_only": false,
+      "default": null,
+      "unique": false,
+      "options": null,
+      "purpose": "relation_collection",
+      "linked_doc": "access_exception_case",
+      "depends_on": null,
+      "mandatory_depends_on": null,
+      "read_only_depends_on": null,
+      "fetch_from": null,
+      "allow_on_submit": false,
+      "indexed": false,
+      "ui": {
+        "visible": false,
+        "list_visible": false,
+        "filterable": false,
+        "sortable": false
+      }
+    },
+    {
+      "field_id": "related_biometric_check_case",
+      "label": "Related Biometric Check Case",
+      "type": "Table MultiSelect",
+      "required": false,
+      "read_only": false,
+      "default": null,
+      "unique": false,
+      "options": null,
+      "purpose": "relation_collection",
+      "linked_doc": "biometric_check_case",
+      "depends_on": null,
+      "mandatory_depends_on": null,
+      "read_only_depends_on": null,
+      "fetch_from": null,
+      "allow_on_submit": false,
+      "indexed": false,
+      "ui": {
+        "visible": false,
+        "list_visible": false,
+        "filterable": false,
+        "sortable": false
+      }
     }
   ],
   "field_groups": {
@@ -405,7 +477,11 @@
       "result",
       "risk_flag"
     ],
-    "relations": [],
+    "relations": [
+      "related_access_device",
+      "related_access_exception_case",
+      "related_biometric_check_case"
+    ],
     "amounts": [
       "currency",
       "total_amount"
@@ -492,16 +568,20 @@
     {
       "role_id": "System Manager",
       "actions": [
-        "create",
-        "update",
         "view",
         "list",
         "record",
-        "review",
-        "assign",
-        "track",
-        "monitor",
-        "confirm",
+        "normalize",
+        "link",
+        "archive"
+      ]
+    },
+    {
+      "role_id": "case owner",
+      "actions": [
+        "view",
+        "list",
+        "record",
         "archive"
       ]
     }

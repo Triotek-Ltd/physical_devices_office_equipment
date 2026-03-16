@@ -54,7 +54,10 @@
       "workflow_state"
     ],
     "field_purposes": {
-      "workflow_state": "lifecycle_state"
+      "workflow_state": "lifecycle_state",
+      "related_scan_event_log": "relation_collection",
+      "related_device_assignment": "relation_collection",
+      "related_device_sync_event": "relation_collection"
     },
     "search_fields": [
       "title",
@@ -88,7 +91,40 @@
       "archive": "archived"
     }
   },
-  "workflow_hints": {},
+  "workflow_hints": {
+    "relation_context": {
+      "related_docs": [
+        "scan_event_log",
+        "device_assignment",
+        "device_sync_event"
+      ],
+      "borrowed_fields": [
+        "site/location context from warehouse or operations setup"
+      ],
+      "inferred_roles": [
+        "operations coordinator"
+      ]
+    },
+    "actors": [
+      "operations coordinator"
+    ],
+    "action_actors": {
+      "create": [
+        "operations coordinator"
+      ],
+      "assign": [
+        "operations coordinator"
+      ],
+      "retire": [
+        "operations coordinator"
+      ],
+      "archive": [
+        "operations coordinator"
+      ]
+    }
+  },
+  "downstream_effects": [],
+  "action_side_effects_file": "side_effects.json",
   "related_docs": [
     "scan_event_log",
     "device_assignment",

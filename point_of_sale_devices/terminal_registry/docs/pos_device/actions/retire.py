@@ -8,7 +8,7 @@ ACTION_ID = "retire"
 ACTION_RULE = {'allowed_in_states': ['draft', 'provisioned', 'active', 'retired'], 'transitions_to': None}
 
 STATE_FIELD = 'workflow_state'
-WORKFLOW_HINTS = {}
+WORKFLOW_HINTS = {'relation_context': {'related_docs': ['terminal_session', 'receipt_print_event', 'device_payment_event'], 'borrowed_fields': ['merchant/site context from payment or operations setup'], 'inferred_roles': ['finance officer']}, 'actors': ['finance officer'], 'action_actors': {'create': ['finance officer'], 'activate': ['finance officer'], 'retire': ['finance officer'], 'archive': ['finance officer']}}
 
 def handle_retire(payload: dict, context: dict | None = None) -> dict:
     context = context or {}

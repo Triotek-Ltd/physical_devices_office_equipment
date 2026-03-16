@@ -54,7 +54,9 @@
     "field_purposes": {
       "workflow_state": "lifecycle_state",
       "posting_date": "posting_date",
-      "event_time": "schedule_marker"
+      "event_time": "schedule_marker",
+      "related_pos_device": "relation_collection",
+      "related_device_payment_event": "relation_collection"
     },
     "search_fields": [
       "title",
@@ -85,7 +87,34 @@
       "archive": "archived"
     }
   },
-  "workflow_hints": {},
+  "workflow_hints": {
+    "relation_context": {
+      "related_docs": [
+        "pos_device",
+        "terminal_session",
+        "device_payment_event"
+      ],
+      "borrowed_fields": [
+        "terminal/session context from linked docs"
+      ],
+      "inferred_roles": [
+        "finance officer"
+      ]
+    },
+    "actors": [
+      "finance officer"
+    ],
+    "action_actors": {
+      "record": [
+        "finance officer"
+      ],
+      "archive": [
+        "finance officer"
+      ]
+    }
+  },
+  "downstream_effects": [],
+  "action_side_effects_file": "side_effects.json",
   "related_docs": [
     "pos_device",
     "terminal_session",

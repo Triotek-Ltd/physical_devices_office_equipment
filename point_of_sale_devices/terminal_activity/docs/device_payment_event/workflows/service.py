@@ -11,7 +11,7 @@ TERMINAL_STATES = ['archived']
 ACTION_RULES = {'record': {'allowed_in_states': ['received', 'normalized', 'linked'], 'transitions_to': None}, 'normalize': {'allowed_in_states': ['received', 'normalized', 'linked'], 'transitions_to': None}, 'link': {'allowed_in_states': ['received', 'normalized', 'linked'], 'transitions_to': None}, 'archive': {'allowed_in_states': ['received', 'normalized', 'linked'], 'transitions_to': 'archived'}}
 
 STATE_FIELD = 'workflow_state'
-WORKFLOW_HINTS = {}
+WORKFLOW_HINTS = {'relation_context': {'related_docs': ['pos_device', 'terminal_session', 'card_authorization_record', 'payment_intent_record'], 'borrowed_fields': ['device/site context from pos_device'], 'inferred_roles': ['approver', 'finance officer']}, 'actors': ['approver', 'finance officer'], 'action_actors': {'record': ['approver'], 'archive': ['approver']}}
 
 class WorkflowService:
     def allowed_actions_for_state(self, state: str | None) -> list[str]:

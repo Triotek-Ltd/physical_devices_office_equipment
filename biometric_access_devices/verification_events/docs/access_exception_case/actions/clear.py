@@ -8,7 +8,7 @@ ACTION_ID = "clear"
 ACTION_RULE = {'allowed_in_states': ['opened', 'in_review', 'cleared', 'escalated'], 'transitions_to': None}
 
 STATE_FIELD = 'workflow_state'
-WORKFLOW_HINTS = {}
+WORKFLOW_HINTS = {'relation_context': {'related_docs': ['access_verification_event', 'access_device', 'fraud_review_case'], 'borrowed_fields': ['event', 'device context from linked records'], 'inferred_roles': ['case owner']}, 'actors': ['case owner'], 'action_actors': {'create': ['case owner'], 'assign': ['case owner'], 'review': ['case owner'], 'close': ['case owner'], 'archive': ['case owner']}}
 
 def handle_clear(payload: dict, context: dict | None = None) -> dict:
     context = context or {}

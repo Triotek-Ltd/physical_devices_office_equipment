@@ -64,7 +64,9 @@
       "party": "primary_party",
       "currency": "currency_code",
       "total_amount": "total_amount",
-      "assignment_status": "status_flag"
+      "assignment_status": "status_flag",
+      "related_scan_event_log": "relation_collection",
+      "related_device_sync_event": "relation_collection"
     },
     "search_fields": [
       "title",
@@ -102,7 +104,40 @@
       "archive": "archived"
     }
   },
-  "workflow_hints": {},
+  "workflow_hints": {
+    "relation_context": {
+      "related_docs": [
+        "scanner_device",
+        "scan_event_log",
+        "device_sync_event"
+      ],
+      "borrowed_fields": [
+        "device identity from scanner_device"
+      ],
+      "inferred_roles": [
+        "operations coordinator"
+      ]
+    },
+    "actors": [
+      "operations coordinator"
+    ],
+    "action_actors": {
+      "create": [
+        "operations coordinator"
+      ],
+      "assign": [
+        "operations coordinator"
+      ],
+      "close": [
+        "operations coordinator"
+      ],
+      "archive": [
+        "operations coordinator"
+      ]
+    }
+  },
+  "downstream_effects": [],
+  "action_side_effects_file": "side_effects.json",
   "related_docs": [
     "scanner_device",
     "scan_event_log",

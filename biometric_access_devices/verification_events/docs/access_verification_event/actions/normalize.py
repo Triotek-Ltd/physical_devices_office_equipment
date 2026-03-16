@@ -8,7 +8,7 @@ ACTION_ID = "normalize"
 ACTION_RULE = {'allowed_in_states': ['received', 'normalized', 'linked'], 'transitions_to': None}
 
 STATE_FIELD = 'workflow_state'
-WORKFLOW_HINTS = {}
+WORKFLOW_HINTS = {'relation_context': {'related_docs': ['access_device', 'access_exception_case', 'biometric_check_case'], 'borrowed_fields': ['device/site context from access_device'], 'inferred_roles': ['case owner']}, 'actors': ['case owner'], 'action_actors': {'record': ['case owner'], 'archive': ['case owner']}}
 
 def handle_normalize(payload: dict, context: dict | None = None) -> dict:
     context = context or {}

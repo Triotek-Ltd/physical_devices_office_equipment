@@ -8,7 +8,7 @@ ACTION_ID = "create"
 ACTION_RULE = {'allowed_in_states': ['draft', 'active', 'returned'], 'transitions_to': None}
 
 STATE_FIELD = 'workflow_state'
-WORKFLOW_HINTS = {}
+WORKFLOW_HINTS = {'relation_context': {'related_docs': ['scanner_device', 'scan_event_log', 'device_sync_event'], 'borrowed_fields': ['device identity from scanner_device'], 'inferred_roles': ['operations coordinator']}, 'actors': ['operations coordinator'], 'action_actors': {'create': ['operations coordinator'], 'assign': ['operations coordinator'], 'close': ['operations coordinator'], 'archive': ['operations coordinator']}}
 
 def handle_create(payload: dict, context: dict | None = None) -> dict:
     context = context or {}

@@ -62,7 +62,10 @@
       "workflow_state"
     ],
     "field_purposes": {
-      "workflow_state": "lifecycle_state"
+      "workflow_state": "lifecycle_state",
+      "related_access_verification_event": "relation_collection",
+      "related_access_device": "relation_collection",
+      "related_fraud_review_case": "relation_collection"
     },
     "search_fields": [
       "title",
@@ -101,7 +104,44 @@
       "archive": "archived"
     }
   },
-  "workflow_hints": {},
+  "workflow_hints": {
+    "relation_context": {
+      "related_docs": [
+        "access_verification_event",
+        "access_device",
+        "fraud_review_case"
+      ],
+      "borrowed_fields": [
+        "event",
+        "device context from linked records"
+      ],
+      "inferred_roles": [
+        "case owner"
+      ]
+    },
+    "actors": [
+      "case owner"
+    ],
+    "action_actors": {
+      "create": [
+        "case owner"
+      ],
+      "assign": [
+        "case owner"
+      ],
+      "review": [
+        "case owner"
+      ],
+      "close": [
+        "case owner"
+      ],
+      "archive": [
+        "case owner"
+      ]
+    }
+  },
+  "downstream_effects": [],
+  "action_side_effects_file": "side_effects.json",
   "related_docs": [
     "access_verification_event",
     "access_device",

@@ -28,7 +28,26 @@
       "show_in_related_panel": true
     }
   ],
-  "lookup_rules": [],
+  "lookup_rules": [
+    {
+      "field_id": "related_device_record",
+      "doc_id": "device_record",
+      "lookup_mode": "multiple",
+      "purpose": "relation_collection"
+    },
+    {
+      "field_id": "related_device_job_log",
+      "doc_id": "device_job_log",
+      "lookup_mode": "multiple",
+      "purpose": "relation_collection"
+    },
+    {
+      "field_id": "related_supply_level_snapshot",
+      "doc_id": "supply_level_snapshot",
+      "lookup_mode": "multiple",
+      "purpose": "relation_collection"
+    }
+  ],
   "fetch_rules": [],
   "reference_map": {
     "primary_reference_field": "reference_no",
@@ -36,7 +55,11 @@
   },
   "relation_rules": {
     "parent_doc": null,
-    "child_docs": [],
+    "child_docs": [
+      "device_record",
+      "device_job_log",
+      "supply_level_snapshot"
+    ],
     "show_related_panel": true
   },
   "borrowed_fields": [
@@ -60,6 +83,40 @@
   "runtime_hints": {
     "doc_key": "maintenance_case",
     "supports_related_lookup": true,
-    "supports_fetch_rules": true
+    "supports_fetch_rules": true,
+    "workflow_hints": {
+      "relation_context": {
+        "related_docs": [
+          "device_record",
+          "device_job_log",
+          "supply_level_snapshot"
+        ],
+        "borrowed_fields": [
+          "device",
+          "site context from device_record"
+        ],
+        "inferred_roles": [
+          "case owner"
+        ]
+      },
+      "actors": [
+        "case owner"
+      ],
+      "action_actors": {
+        "create": [
+          "case owner"
+        ],
+        "assign": [
+          "case owner"
+        ],
+        "close": [
+          "case owner"
+        ],
+        "archive": [
+          "case owner"
+        ]
+      }
+    },
+    "action_side_effects_file": "side_effects.json"
   }
 }

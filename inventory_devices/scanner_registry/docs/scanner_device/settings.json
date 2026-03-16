@@ -28,7 +28,26 @@
       "show_in_related_panel": true
     }
   ],
-  "lookup_rules": [],
+  "lookup_rules": [
+    {
+      "field_id": "related_scan_event_log",
+      "doc_id": "scan_event_log",
+      "lookup_mode": "multiple",
+      "purpose": "relation_collection"
+    },
+    {
+      "field_id": "related_device_assignment",
+      "doc_id": "device_assignment",
+      "lookup_mode": "multiple",
+      "purpose": "relation_collection"
+    },
+    {
+      "field_id": "related_device_sync_event",
+      "doc_id": "device_sync_event",
+      "lookup_mode": "multiple",
+      "purpose": "relation_collection"
+    }
+  ],
   "fetch_rules": [],
   "reference_map": {
     "primary_reference_field": "reference_no",
@@ -36,7 +55,11 @@
   },
   "relation_rules": {
     "parent_doc": null,
-    "child_docs": [],
+    "child_docs": [
+      "scan_event_log",
+      "device_assignment",
+      "device_sync_event"
+    ],
     "show_related_panel": true
   },
   "borrowed_fields": [
@@ -57,6 +80,39 @@
   "runtime_hints": {
     "doc_key": "scanner_device",
     "supports_related_lookup": true,
-    "supports_fetch_rules": true
+    "supports_fetch_rules": true,
+    "workflow_hints": {
+      "relation_context": {
+        "related_docs": [
+          "scan_event_log",
+          "device_assignment",
+          "device_sync_event"
+        ],
+        "borrowed_fields": [
+          "site/location context from warehouse or operations setup"
+        ],
+        "inferred_roles": [
+          "operations coordinator"
+        ]
+      },
+      "actors": [
+        "operations coordinator"
+      ],
+      "action_actors": {
+        "create": [
+          "operations coordinator"
+        ],
+        "assign": [
+          "operations coordinator"
+        ],
+        "retire": [
+          "operations coordinator"
+        ],
+        "archive": [
+          "operations coordinator"
+        ]
+      }
+    },
+    "action_side_effects_file": "side_effects.json"
   }
 }

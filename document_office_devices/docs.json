@@ -1,8 +1,8 @@
 {
   "docs": [
     "device_job_log",
+    "device_record",
     "maintenance_case",
-    "supply_level_snapshot",
-    "device_record"
+    "supply_level_snapshot"
   ]
 }

@@ -33,7 +33,32 @@
       "show_in_related_panel": true
     }
   ],
-  "lookup_rules": [],
+  "lookup_rules": [
+    {
+      "field_id": "related_scanner_device",
+      "doc_id": "scanner_device",
+      "lookup_mode": "multiple",
+      "purpose": "relation_collection"
+    },
+    {
+      "field_id": "related_device_assignment",
+      "doc_id": "device_assignment",
+      "lookup_mode": "multiple",
+      "purpose": "relation_collection"
+    },
+    {
+      "field_id": "related_inventory_movement",
+      "doc_id": "inventory_movement",
+      "lookup_mode": "multiple",
+      "purpose": "relation_collection"
+    },
+    {
+      "field_id": "related_pick_list",
+      "doc_id": "pick_list",
+      "lookup_mode": "multiple",
+      "purpose": "relation_collection"
+    }
+  ],
   "fetch_rules": [],
   "reference_map": {
     "primary_reference_field": "reference_no",
@@ -41,7 +66,12 @@
   },
   "relation_rules": {
     "parent_doc": null,
-    "child_docs": [],
+    "child_docs": [
+      "scanner_device",
+      "device_assignment",
+      "inventory_movement",
+      "pick_list"
+    ],
     "show_related_panel": true
   },
   "borrowed_fields": [
@@ -65,6 +95,35 @@
   "runtime_hints": {
     "doc_key": "scan_event_log",
     "supports_related_lookup": true,
-    "supports_fetch_rules": true
+    "supports_fetch_rules": true,
+    "workflow_hints": {
+      "relation_context": {
+        "related_docs": [
+          "scanner_device",
+          "device_assignment",
+          "inventory_movement",
+          "pick_list"
+        ],
+        "borrowed_fields": [
+          "device assignment",
+          "site context from linked docs"
+        ],
+        "inferred_roles": [
+          "operations coordinator"
+        ]
+      },
+      "actors": [
+        "operations coordinator"
+      ],
+      "action_actors": {
+        "record": [
+          "operations coordinator"
+        ],
+        "archive": [
+          "operations coordinator"
+        ]
+      }
+    },
+    "action_side_effects_file": "side_effects.json"
   }
 }

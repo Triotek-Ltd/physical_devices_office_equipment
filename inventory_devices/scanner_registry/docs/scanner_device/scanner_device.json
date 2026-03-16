@@ -60,7 +60,11 @@
         "sync_mode",
         "active_state"
       ],
-      "relations": [],
+      "relations": [
+        "related_scan_event_log",
+        "related_device_assignment",
+        "related_device_sync_event"
+      ],
       "amounts": [],
       "dates": [],
       "parties": [],
@@ -315,6 +319,78 @@
           "filterable": true,
           "sortable": true
         }
+      },
+      {
+        "field_id": "related_scan_event_log",
+        "label": "Related Scan Event Log",
+        "type": "Table MultiSelect",
+        "required": false,
+        "read_only": false,
+        "default": null,
+        "unique": false,
+        "options": null,
+        "purpose": "relation_collection",
+        "linked_doc": "scan_event_log",
+        "depends_on": null,
+        "mandatory_depends_on": null,
+        "read_only_depends_on": null,
+        "fetch_from": null,
+        "allow_on_submit": false,
+        "indexed": false,
+        "ui": {
+          "visible": false,
+          "list_visible": false,
+          "filterable": false,
+          "sortable": false
+        }
+      },
+      {
+        "field_id": "related_device_assignment",
+        "label": "Related Device Assignment",
+        "type": "Table MultiSelect",
+        "required": false,
+        "read_only": false,
+        "default": null,
+        "unique": false,
+        "options": null,
+        "purpose": "relation_collection",
+        "linked_doc": "device_assignment",
+        "depends_on": null,
+        "mandatory_depends_on": null,
+        "read_only_depends_on": null,
+        "fetch_from": null,
+        "allow_on_submit": false,
+        "indexed": false,
+        "ui": {
+          "visible": false,
+          "list_visible": false,
+          "filterable": false,
+          "sortable": false
+        }
+      },
+      {
+        "field_id": "related_device_sync_event",
+        "label": "Related Device Sync Event",
+        "type": "Table MultiSelect",
+        "required": false,
+        "read_only": false,
+        "default": null,
+        "unique": false,
+        "options": null,
+        "purpose": "relation_collection",
+        "linked_doc": "device_sync_event",
+        "depends_on": null,
+        "mandatory_depends_on": null,
+        "read_only_depends_on": null,
+        "fetch_from": null,
+        "allow_on_submit": false,
+        "indexed": false,
+        "ui": {
+          "visible": false,
+          "list_visible": false,
+          "filterable": false,
+          "sortable": false
+        }
       }
     ],
     "title_field": "title",
@@ -403,16 +479,23 @@
       {
         "role_id": "System Manager",
         "actions": [
-          "create",
-          "update",
           "view",
           "list",
-          "record",
-          "review",
+          "create",
+          "provision",
           "assign",
-          "track",
-          "monitor",
-          "confirm",
+          "retire",
+          "archive"
+        ]
+      },
+      {
+        "role_id": "operations coordinator",
+        "actions": [
+          "view",
+          "list",
+          "create",
+          "assign",
+          "retire",
           "archive"
         ]
       }
@@ -491,7 +574,26 @@
         "show_in_related_panel": true
       }
     ],
-    "lookup_rules": [],
+    "lookup_rules": [
+      {
+        "field_id": "related_scan_event_log",
+        "doc_id": "scan_event_log",
+        "lookup_mode": "multiple",
+        "purpose": "relation_collection"
+      },
+      {
+        "field_id": "related_device_assignment",
+        "doc_id": "device_assignment",
+        "lookup_mode": "multiple",
+        "purpose": "relation_collection"
+      },
+      {
+        "field_id": "related_device_sync_event",
+        "doc_id": "device_sync_event",
+        "lookup_mode": "multiple",
+        "purpose": "relation_collection"
+      }
+    ],
     "fetch_rules": [],
     "reference_map": {
       "primary_reference_field": "reference_no",
@@ -499,7 +601,11 @@
     },
     "relation_rules": {
       "parent_doc": null,
-      "child_docs": [],
+      "child_docs": [
+        "scan_event_log",
+        "device_assignment",
+        "device_sync_event"
+      ],
       "show_related_panel": true
     },
     "borrowed_fields": [
@@ -520,7 +626,40 @@
     "runtime_hints": {
       "doc_key": "scanner_device",
       "supports_related_lookup": true,
-      "supports_fetch_rules": true
+      "supports_fetch_rules": true,
+      "workflow_hints": {
+        "relation_context": {
+          "related_docs": [
+            "scan_event_log",
+            "device_assignment",
+            "device_sync_event"
+          ],
+          "borrowed_fields": [
+            "site/location context from warehouse or operations setup"
+          ],
+          "inferred_roles": [
+            "operations coordinator"
+          ]
+        },
+        "actors": [
+          "operations coordinator"
+        ],
+        "action_actors": {
+          "create": [
+            "operations coordinator"
+          ],
+          "assign": [
+            "operations coordinator"
+          ],
+          "retire": [
+            "operations coordinator"
+          ],
+          "archive": [
+            "operations coordinator"
+          ]
+        }
+      },
+      "action_side_effects_file": "side_effects.json"
     }
   },
   "classification": {
@@ -596,6 +735,9 @@
       "reports": "reports/service.py",
       "integrations": "integrations/service.py"
     },
+    "runtime_contract": {
+      "side_effects_file": "side_effects.json"
+    },
     "action_handlers": {
       "base_dir": "actions",
       "registry": "actions/registry.py",
@@ -613,6 +755,31 @@
       "doc_kind": "master"
     }
   },
+  "testing": {
+    "seeded": true,
+    "api_base_path": "/apis/physical_devices_office_equipment/inventory_devices/scanner_registry/scanner_device/",
+    "status_field": "workflow_state",
+    "initial_state": "draft",
+    "required_fields": [
+      "title",
+      "workflow_state"
+    ],
+    "transition_scenarios": [
+      {
+        "action_id": "archive",
+        "source_state": "draft",
+        "target_state": "archived",
+        "disallowed_state": "archived"
+      }
+    ],
+    "related_docs": [
+      "scan_event_log",
+      "device_assignment",
+      "device_sync_event"
+    ],
+    "downstream_effects": [],
+    "action_side_effects_file": "side_effects.json"
+  },
   "runtime": {
     "source_of_truth": "doc_folder",
     "generated_from": [
@@ -620,7 +787,8 @@
       "schema.json",
       "actions.json",
       "settings.json",
-      "logic_seed.json"
+      "logic_seed.json",
+      "side_effects.json"
     ],
     "generator": "plug.apps.doc.file_handler"
   }

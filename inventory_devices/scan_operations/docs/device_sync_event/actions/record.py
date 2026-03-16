@@ -8,7 +8,7 @@ ACTION_ID = "record"
 ACTION_RULE = {'allowed_in_states': ['received', 'normalized', 'retried'], 'transitions_to': None}
 
 STATE_FIELD = 'workflow_state'
-WORKFLOW_HINTS = {}
+WORKFLOW_HINTS = {'relation_context': {'related_docs': ['scanner_device', 'device_assignment', 'scan_event_log'], 'borrowed_fields': ['device identity from scanner_device'], 'inferred_roles': ['operations coordinator']}, 'actors': ['operations coordinator'], 'action_actors': {'record': ['operations coordinator'], 'archive': ['operations coordinator']}}
 
 def handle_record(payload: dict, context: dict | None = None) -> dict:
     context = context or {}

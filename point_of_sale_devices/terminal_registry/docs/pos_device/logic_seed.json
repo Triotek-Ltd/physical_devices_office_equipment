@@ -57,7 +57,10 @@
     ],
     "field_purposes": {
       "workflow_state": "lifecycle_state",
-      "active_status": "status_flag"
+      "active_status": "status_flag",
+      "related_terminal_session": "relation_collection",
+      "related_receipt_print_event": "relation_collection",
+      "related_device_payment_event": "relation_collection"
     },
     "search_fields": [
       "title",
@@ -92,7 +95,40 @@
       "archive": "archived"
     }
   },
-  "workflow_hints": {},
+  "workflow_hints": {
+    "relation_context": {
+      "related_docs": [
+        "terminal_session",
+        "receipt_print_event",
+        "device_payment_event"
+      ],
+      "borrowed_fields": [
+        "merchant/site context from payment or operations setup"
+      ],
+      "inferred_roles": [
+        "finance officer"
+      ]
+    },
+    "actors": [
+      "finance officer"
+    ],
+    "action_actors": {
+      "create": [
+        "finance officer"
+      ],
+      "activate": [
+        "finance officer"
+      ],
+      "retire": [
+        "finance officer"
+      ],
+      "archive": [
+        "finance officer"
+      ]
+    }
+  },
+  "downstream_effects": [],
+  "action_side_effects_file": "side_effects.json",
   "related_docs": [
     "terminal_session",
     "receipt_print_event",

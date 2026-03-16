@@ -5,9 +5,11 @@ from __future__ import annotations
 
 ARCHETYPE_PROFILE = {'workflow_profile': {'mode': 'posting_flow', 'supports_reconciliation': True}, 'reporting_profile': {'supports_snapshots': True, 'supports_outputs': True}, 'integration_profile': {'external_sync_enabled': True, 'tracks_external_refs': True}, 'lifecycle_states': ['received', 'normalized', 'retried', 'archived'], 'is_transactional': True}
 
-CONTRACT = {'title_field': 'title', 'status_field': 'workflow_state', 'reference_field': 'reference_no', 'required_fields': ['title', 'workflow_state', 'posting_date'], 'field_purposes': {'workflow_state': 'lifecycle_state', 'posting_date': 'posting_date'}, 'search_fields': ['title', 'reference_no', 'description', 'event_code', 'source_device', 'sync_start_end'], 'list_columns': ['title', 'reference_no', 'posting_date', 'workflow_state'], 'initial_state': 'received', 'lifecycle_states': ['received', 'normalized', 'retried', 'archived'], 'terminal_states': ['archived'], 'action_targets': {'record': None, 'normalize': None, 'retry': None, 'archive': 'archived'}}
+CONTRACT = {'title_field': 'title', 'status_field': 'workflow_state', 'reference_field': 'reference_no', 'required_fields': ['title', 'workflow_state', 'posting_date'], 'field_purposes': {'workflow_state': 'lifecycle_state', 'posting_date': 'posting_date', 'related_scanner_device': 'relation_collection', 'related_device_assignment': 'relation_collection', 'related_scan_event_log': 'relation_collection'}, 'search_fields': ['title', 'reference_no', 'description', 'event_code', 'source_device', 'sync_start_end'], 'list_columns': ['title', 'reference_no', 'posting_date', 'workflow_state'], 'initial_state': 'received', 'lifecycle_states': ['received', 'normalized', 'retried', 'archived'], 'terminal_states': ['archived'], 'action_targets': {'record': None, 'normalize': None, 'retry': None, 'archive': 'archived'}}
 
-WORKFLOW_HINTS = {}
+WORKFLOW_HINTS = {'relation_context': {'related_docs': ['scanner_device', 'device_assignment', 'scan_event_log'], 'borrowed_fields': ['device identity from scanner_device'], 'inferred_roles': ['operations coordinator']}, 'actors': ['operations coordinator'], 'action_actors': {'record': ['operations coordinator'], 'archive': ['operations coordinator']}}
+
+SIDE_EFFECT_HINTS = {'downstream_effects': [], 'related_docs': ['scanner_device', 'device_assignment', 'scan_event_log'], 'action_targets': {'record': None, 'normalize': None, 'retry': None, 'archive': 'archived'}, 'action_side_effects_file': 'side_effects.json'}
 
 class DomainService:
     doc_id = "device_sync_event"
@@ -63,12 +65,28 @@ class DomainService:
     def after_update(self, instance, serialized_data: dict, context: dict | None = None) -> dict:
         return serialized_data
 
+    def after_action(
+        self,
+        instance,
+        action_id: str,
+        payload: dict,
+        action_result: dict,
+        context: dict | None = None,
+    ) -> dict:
+        return {
+            "updates": {},
+            "side_effects": [],
+        }
+
     def shape_retrieve_data(self, instance, serialized_data: dict, context: dict | None = None) -> dict:
         serialized_data.setdefault("_business_capabilities", self.business_capabilities())
         return serialized_data
 
     def workflow_objective(self) -> str | None:
         return WORKFLOW_HINTS.get("business_objective")
+
+    def side_effect_hints(self) -> dict:
+        return SIDE_EFFECT_HINTS
 
     def business_capabilities(self) -> dict:
         return {

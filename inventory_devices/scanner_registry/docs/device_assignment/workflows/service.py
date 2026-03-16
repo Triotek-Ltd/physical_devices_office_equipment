@@ -11,7 +11,7 @@ TERMINAL_STATES = ['closed', 'archived']
 ACTION_RULES = {'create': {'allowed_in_states': ['draft', 'active', 'returned'], 'transitions_to': None}, 'assign': {'allowed_in_states': ['draft', 'active', 'returned'], 'transitions_to': None}, 'return': {'allowed_in_states': ['draft', 'active', 'returned'], 'transitions_to': None}, 'close': {'allowed_in_states': ['draft', 'active', 'returned'], 'transitions_to': 'closed'}, 'archive': {'allowed_in_states': ['draft', 'active', 'returned'], 'transitions_to': 'archived'}}
 
 STATE_FIELD = 'workflow_state'
-WORKFLOW_HINTS = {}
+WORKFLOW_HINTS = {'relation_context': {'related_docs': ['scanner_device', 'scan_event_log', 'device_sync_event'], 'borrowed_fields': ['device identity from scanner_device'], 'inferred_roles': ['operations coordinator']}, 'actors': ['operations coordinator'], 'action_actors': {'create': ['operations coordinator'], 'assign': ['operations coordinator'], 'close': ['operations coordinator'], 'archive': ['operations coordinator']}}
 
 class WorkflowService:
     def allowed_actions_for_state(self, state: str | None) -> list[str]:

@@ -30,7 +30,26 @@
       "show_in_related_panel": true
     }
   ],
-  "lookup_rules": [],
+  "lookup_rules": [
+    {
+      "field_id": "related_pos_device",
+      "doc_id": "pos_device",
+      "lookup_mode": "multiple",
+      "purpose": "relation_collection"
+    },
+    {
+      "field_id": "related_receipt_print_event",
+      "doc_id": "receipt_print_event",
+      "lookup_mode": "multiple",
+      "purpose": "relation_collection"
+    },
+    {
+      "field_id": "related_device_payment_event",
+      "doc_id": "device_payment_event",
+      "lookup_mode": "multiple",
+      "purpose": "relation_collection"
+    }
+  ],
   "fetch_rules": [],
   "reference_map": {
     "primary_reference_field": "reference_no",
@@ -38,7 +57,11 @@
   },
   "relation_rules": {
     "parent_doc": null,
-    "child_docs": [],
+    "child_docs": [
+      "pos_device",
+      "receipt_print_event",
+      "device_payment_event"
+    ],
     "show_related_panel": true
   },
   "borrowed_fields": [
@@ -62,6 +85,37 @@
   "runtime_hints": {
     "doc_key": "terminal_session",
     "supports_related_lookup": true,
-    "supports_fetch_rules": true
+    "supports_fetch_rules": true,
+    "workflow_hints": {
+      "relation_context": {
+        "related_docs": [
+          "pos_device",
+          "receipt_print_event",
+          "device_payment_event"
+        ],
+        "borrowed_fields": [
+          "terminal identity",
+          "site from pos_device"
+        ],
+        "inferred_roles": [
+          "finance officer"
+        ]
+      },
+      "actors": [
+        "finance officer"
+      ],
+      "action_actors": {
+        "assign": [
+          "finance officer"
+        ],
+        "close": [
+          "finance officer"
+        ],
+        "archive": [
+          "finance officer"
+        ]
+      }
+    },
+    "action_side_effects_file": "side_effects.json"
   }
 }

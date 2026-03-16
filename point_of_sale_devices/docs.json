@@ -1,8 +1,8 @@
 {
   "docs": [
     "device_payment_event",
+    "pos_device",
     "receipt_print_event",
-    "terminal_session",
-    "pos_device"
+    "terminal_session"
   ]
 }
